@@ -1,0 +1,121 @@
+{
+  "rules": {
+    "context_initialization": {
+      "description": "Starting point for each interaction. Provides essential context for Cloudflare Workers and the Growth Marketing API.",
+      "steps": [
+        "ALWAYS read  `.notes/prd.md`",
+        "REMEMBER: This codebase is a Cloudflare Workers project, fully in TypeScript, providing marketing and SEO APIs (SERP data, company info, logging).",
+        "BE AWARE: We do not need UI or Next.js in this project—only Cloudflare Worker routes, middleware, services, and typed interfaces."
+      ]
+    },
+    "operational_protocol": {
+      "description": "Instructions on how to approach tasks before and during code modifications in the Cloudflare Workers environment.",
+      "before_action": [
+        "Create a MECE (Mutually Exclusive Collectively Exhaustive) task breakdown for requested features or fixes.",
+        "Identify relevant modules (handlers, services, middleware, types) and read the existing code to maintain consistency."
+      ],
+      "code_changes": [
+        "Preserve existing functionality. Avoid regressions in type safety, logging, rate limiting, and error handling.",
+        "Comply with the Cloudflare Workers environment constraints (e.g., limited Node APIs).",
+        "Ensure type safety across all request handlers, services, and utility functions.",
+        "**When updating a file (e.g., README.md or code), only modify or append content relevant to the requested change. Do not remove or overwrite unrelated sections unless explicitly instructed.**",
+        "**Always read and parse the entire file (or diff) before making changes to ensure no existing content or context is lost.**"
+      ]
+    },
+    "safety_requirements": [
+      "NEVER break type safety or neglect error handling; the project relies on typed responses and robust error management.",
+      "ALWAYS document new or modified code following the 'enhanced_code_understanding' guidelines.",
+      "ALWAYS enforce consistent logging, request validation, and rate-limiting compliance."
+    ],
+    "priorities": [
+      {
+        "source": ".notes/",
+        "weight": 1.0
+      }
+    ],
+    "modes": {
+      "base": {
+        "description": "For routine tasks (e.g., small bug fixes, minor feature additions)."
+      },
+      "enhanced": {
+        "description": "For complex or large-scale tasks requiring multiple modules/services, deeper architectural changes, or new third-party integrations."
+      }
+    },
+    "project_directives": {
+      "name": "growth_marketing_api",
+      "ai_first": true,
+      "description": "Cloudflare Workers project for marketing/SEO APIs. Must adhere to strong TypeScript typing, robust error handling, logging, and external service integration.",
+      "root_url": "https://api.growthmarketing.ai",
+      "test_api_key_header": "x-api-key",
+      "test_api_key_value": "gm_HKb4seEq3g30p93J0j7dhZ5uMoJE9S4H"
+    },
+    "enhanced_code_understanding": {
+      "description": "Guidelines for thorough code documentation after each generation or modification. Use these sections in code comments for clarity and maintainability.",
+      "sections": [
+        {
+          "title": "Overview & Purpose",
+          "description": "Briefly describe the module, class, or function’s purpose, and how it contributes to the overall Growth Marketing API."
+        },
+        {
+          "title": "Parameters & Return Values",
+          "description": "Explain each parameter’s type, meaning, constraints, and note any return values. List assumptions or preconditions."
+        },
+        {
+          "title": "Dependencies & External References",
+          "description": "Mention any external services (DataForSEO, Clearbit, etc.), libraries, or environment variables used by this code."
+        },
+        {
+          "title": "Step-by-Step Logic",
+          "description": "Detail the logic or algorithmic flow. Highlight special transformations, HTTP requests, or conditionals."
+        },
+        {
+          "title": "Edge Cases & Pitfalls",
+          "description": "Call out possible errors, exceptions, rate-limit edge cases, or external API quirks. Suggest how to mitigate them."
+        },
+        {
+          "title": "Example Usage",
+          "description": "Provide a concise sample snippet or test scenario demonstrating how to invoke this function or module."
+        },
+        {
+          "title": "Change History",
+          "description": "Record any modifications or refactoring. Summarize the reasoning behind changes and their impacts on existing logic."
+        }
+      ]
+    },
+    "cloudflare_workers_requirements": {
+      "description": "Key Cloudflare Worker guidelines and architectural conventions for the Growth Marketing API.",
+      "guidelines": [
+        "Organize code into modules under src/: core, handlers, middleware, services, and types. Maintain clear separation of concerns.",
+        "Use the Worker runtime features (KV, D1, environment variables) carefully. Retrieve secrets from wrangler.toml or environment bindings.",
+        "Implement robust logging and request handling, referencing the LoggingService and custom error-handling logic.",
+        "Adhere to the router or middleware architecture (e.g., Hono or custom). Each route should have typed request params and typed responses.",
+        "Ensure rate-limiting logic remains consistent across newly added endpoints. Follow existing patterns in middleware or services.",
+        "Use typed interfaces from src/types. Create new types or extend existing ones if external API structures change (e.g., new DataForSEO endpoints).",
+        "If adding new external integrations (e.g., Clearbit), wrap them in their own service class with typed methods for consistency."
+      ]
+    },
+    "folder_and_file_structure": {
+      "description": "Enforces the standard organization used in the Growth Marketing API codebase.",
+      "rules": [
+        "Place route logic in src/handlers/ with domain-specific subfolders if necessary (e.g., company, moz).",
+        "Maintain service classes in src/services/ to interact with external APIs or provide specialized internal functionality (e.g., dataforseo.ts, clearbit.ts).",
+        "Store reusable type definitions in src/types/ with meaningful naming (common.ts, dataforseo.ts, etc.).",
+        "Configure environment specifics (wrangler.toml, etc.) outside of src/, ensuring secrets are properly bound (not committed).",
+        "Retain a single index.ts or dedicated main entry point in src/ for Worker execution, referencing the router and any initialization logic."
+      ]
+    },
+    "code_generation_protocol": {
+      "description": "Specifies the approach to writing new code or updating existing code within the Cloudflare Workers environment.",
+      "rules": [
+        "All new code must follow the 'enhanced_code_understanding' template for documentation. Keep method-level JSDoc comments updated.",
+        "Preserve existing logging patterns (LoggingService usage), error structures (ApiError), and typed endpoints. Extend them as needed.",
+        "Focus on data validation: ensure that request schemas and responses are typed. Validate external API responses for reliability.",
+        "If adding new external integrations, place them in a dedicated service file, referencing typed request/response interfaces in src/types.",
+        "Use consistent error responses (e.g., { success: false, error, details }) for failures. Only deviate if there’s a justifiable reason.",
+        "Whenever possible, use utility or helper functions for repeated tasks (e.g., building requests to external services, parsing JSON).",
+        "**When updating code, do not remove any part of the file unrelated to your task. Focus on incremental changes that preserve existing functionality and documentation.**",
+        "**When adding new sections to the README or code, integrate them seamlessly without deleting or replacing existing content unless explicitly instructed.**"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1574 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Growth Marketing API",
+    "description": "API for company information, logos, MOZ metrics, and SERP data",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Growth Marketing AI",
+      "url": "https://growthmarketing.ai"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.growthmarketing.ai",
+      "description": "Production server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key"
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "error": {
+            "type": "string",
+            "example": "Error message"
+          },
+          "details": {
+            "type": "string",
+            "example": "Additional error details"
+          }
+        }
+      },
+      "Company": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Google"
+          },
+          "domain": {
+            "type": "string",
+            "example": "google.com"
+          },
+          "logo": {
+            "type": "string",
+            "example": "https://api.growthmarketing.ai/logo/google.com"
+          }
+        }
+      },
+      "MozMetrics": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "example": "example.com"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "page_rank": {
+                "type": "number",
+                "format": "float",
+                "example": 5.24
+              },
+              "moz_domain_authority": {
+                "type": "integer",
+                "example": 44
+              },
+              "moz_spam_score": {
+                "type": "integer",
+                "example": 1
+              },
+              "moz_link_propensity": {
+                "type": "integer",
+                "example": 2543
+              },
+              "moz_pages_to_subdomain": {
+                "type": "integer",
+                "example": 704233
+              },
+              "moz_nofollow_pages_to_subdomain": {
+                "type": "integer",
+                "example": 473821
+              },
+              "moz_redirect_pages_to_subdomain": {
+                "type": "integer",
+                "example": 966
+              },
+              "moz_external_pages_to_subdomain": {
+                "type": "integer",
+                "example": 506266
+              },
+              "moz_external_nofollow_pages_to_subdomain": {
+                "type": "integer",
+                "example": 473506
+              },
+              "moz_external_redirect_pages_to_subdomain": {
+                "type": "integer",
+                "example": 57
+              },
+              "moz_deleted_pages_to_subdomain": {
+                "type": "integer",
+                "example": 538883
+              },
+              "moz_root_domains_to_subdomain": {
+                "type": "integer",
+                "example": 8166
+              },
+              "moz_deleted_root_domains_to_subdomain": {
+                "type": "integer",
+                "example": 3571
+              },
+              "moz_nofollow_root_domains_to_subdomain": {
+                "type": "integer",
+                "example": 2221
+              },
+              "moz_da_history_values": {
+                "type": "string",
+                "example": "17|17|19|20|22|23|22|22|22|22"
+              }
+            }
+          }
+        }
+      },
+      "YouTubeVideoInfo": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "youtube_video_info"
+          },
+          "video_id": {
+            "type": "string",
+            "example": "vQXvyV0zIP4"
+          },
+          "title": {
+            "type": "string",
+            "example": "Video Title"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://www.youtube.com/watch?v=vQXvyV0zIP4"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "example": "https://i.ytimg.com/vi/vQXvyV0zIP4/default.jpg"
+          },
+          "channel_id": {
+            "type": "string",
+            "example": "UCl1hby9X42xkXUiAVcJS81A"
+          },
+          "channel_name": {
+            "type": "string",
+            "example": "Channel Name"
+          },
+          "channel_url": {
+            "type": "string",
+            "example": "https://www.youtube.com/channel/UCl1hby9X42xkXUiAVcJS81A"
+          },
+          "channel_logo": {
+            "type": "string",
+            "example": "https://yt3.ggpht.com/example"
+          },
+          "description": {
+            "type": "string",
+            "example": "Video description..."
+          },
+          "views_count": {
+            "type": "integer",
+            "example": 1234567
+          },
+          "likes_count": {
+            "type": "integer",
+            "example": 12345
+          },
+          "comments_count": {
+            "type": "integer",
+            "example": 1234
+          },
+          "channel_subscribers_count": {
+            "type": "object",
+            "properties": {
+              "displayed_count": {
+                "type": "string",
+                "example": "100K subscribers"
+              },
+              "count": {
+                "type": "integer",
+                "example": 100000
+              }
+            }
+          },
+          "publication_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-01"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2024-01-01 12:00:00 +00:00"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["keyword1", "keyword2"]
+          },
+          "category": {
+            "type": "string",
+            "example": "Category Name"
+          },
+          "is_live": {
+            "type": "boolean",
+            "example": false
+          },
+          "is_embeddable": {
+            "type": "boolean",
+            "example": true
+          },
+          "duration_time": {
+            "type": "string",
+            "example": "10:30"
+          },
+          "duration_time_seconds": {
+            "type": "integer",
+            "example": 630
+          },
+          "streaming_quality": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "streaming_quality_element"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "1080p"
+                },
+                "width": {
+                  "type": "integer",
+                  "example": 1920
+                },
+                "height": {
+                  "type": "integer",
+                  "example": 1080
+                },
+                "bitrate": {
+                  "type": "integer",
+                  "example": 2500000
+                },
+                "mime_type": {
+                  "type": "string",
+                  "example": "video/mp4; codecs=\"avc1.640028\""
+                },
+                "fps": {
+                  "type": "integer",
+                  "example": 30
+                }
+              }
+            }
+          }
+        }
+      },
+      "GoogleSerpResult": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "organic"
+          },
+          "rank_group": {
+            "type": "integer",
+            "example": 1
+          },
+          "rank_absolute": {
+            "type": "integer",
+            "example": 1
+          },
+          "domain": {
+            "type": "string",
+            "example": "example.com"
+          },
+          "title": {
+            "type": "string",
+            "example": "Example Title"
+          },
+          "description": {
+            "type": "string",
+            "example": "Example description..."
+          },
+          "url": {
+            "type": "string",
+            "example": "https://example.com/page"
+          },
+          "breadcrumb": {
+            "type": "string",
+            "example": "example.com › category › page"
+          }
+        }
+      },
+      "BingSerpResult": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "organic"
+          },
+          "rank_group": {
+            "type": "integer",
+            "example": 1
+          },
+          "rank_absolute": {
+            "type": "integer",
+            "example": 1
+          },
+          "domain": {
+            "type": "string",
+            "example": "example.com"
+          },
+          "title": {
+            "type": "string",
+            "example": "Example Title"
+          },
+          "description": {
+            "type": "string",
+            "example": "Example description..."
+          },
+          "url": {
+            "type": "string",
+            "example": "https://example.com/page"
+          },
+          "breadcrumb": {
+            "type": "string",
+            "example": "example.com › category › page"
+          }
+        }
+      },
+      "YouTubeSerpResult": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "video"
+          },
+          "rank_group": {
+            "type": "integer",
+            "example": 1
+          },
+          "rank_absolute": {
+            "type": "integer",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Example Video Title"
+          },
+          "url": {
+            "type": "string",
+            "example": "https://www.youtube.com/watch?v=example"
+          },
+          "channel_title": {
+            "type": "string",
+            "example": "Channel Name"
+          },
+          "channel_url": {
+            "type": "string",
+            "example": "https://www.youtube.com/channel/example"
+          },
+          "channel_image": {
+            "type": "string",
+            "example": "https://yt3.ggpht.com/example"
+          },
+          "duration": {
+            "type": "string",
+            "example": "10:30"
+          },
+          "views": {
+            "type": "integer",
+            "example": 1000000
+          },
+          "uploaded_date": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-01"
+          },
+          "description": {
+            "type": "string",
+            "example": "Video description"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "example": "https://i.ytimg.com/vi/example/default.jpg"
+          },
+          "live": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "GoogleAutocompleteResult": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "example": "albert einstein"
+          },
+          "type": {
+            "type": "string",
+            "example": "autocomplete"
+          },
+          "se_domain": {
+            "type": "string",
+            "example": "google.com"
+          },
+          "location_code": {
+            "type": "integer",
+            "example": 2840
+          },
+          "language_code": {
+            "type": "string",
+            "example": "en"
+          },
+          "check_url": {
+            "type": "string",
+            "example": "https://google.com/search?q=albert+einstein&hl=en&gl=US"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "autocomplete"
+                },
+                "rank_group": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "rank_absolute": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "suggestion": {
+                  "type": "string",
+                  "example": "albert einstein"
+                },
+                "search_query_url": {
+                  "type": "string",
+                  "example": "https://www.google.com/search?q=albert+einstein"
+                },
+                "thumbnail_url": {
+                  "type": "string",
+                  "example": "http://t0.gstatic.com/images?q=..."
+                },
+                "highlighted": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "HTMLSourceCodeSearchRequest": {
+        "type": "object",
+        "required": ["search_terms"],
+        "properties": {
+          "search_terms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of strings to search for in the HTML source code",
+            "example": ["data-attrid"]
+          },
+          "order_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of strings specifying the sorting order (e.g., 'last_visited,desc')",
+            "example": ["last_visited,desc"]
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Maximum number of results to return per page",
+            "default": 10,
+            "example": 10
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Number of results to skip for pagination",
+            "default": 0,
+            "example": 0
+          }
+        }
+      },
+      "HTMLSourceCodeSearchResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "total_count": {
+                "type": "integer",
+                "example": 1233
+              },
+              "items_count": {
+                "type": "integer",
+                "example": 2
+              },
+              "offset": {
+                "type": "integer",
+                "example": 0
+              },
+              "offset_token": {
+                "type": "string",
+                "example": "eyJDdXJyZW50T2Zmc2V0IjoyLCJSYXdSZXF1ZXN0..."
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "domain_technology_item"
+                    },
+                    "domain": {
+                      "type": "string",
+                      "example": "example.com"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Example Website Title"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Example website description"
+                    },
+                    "meta_keywords": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": ["keyword1", "keyword2"]
+                    },
+                    "domain_rank": {
+                      "type": "integer",
+                      "example": 537
+                    },
+                    "last_visited": {
+                      "type": "string",
+                      "example": "2024-12-21 15:49:23 +00:00"
+                    },
+                    "country_iso_code": {
+                      "type": "string",
+                      "example": "GB"
+                    },
+                    "language_code": {
+                      "type": "string",
+                      "example": "en"
+                    },
+                    "content_language_code": {
+                      "type": "string",
+                      "example": "en"
+                    },
+                    "emails": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": ["contact@example.com"]
+                    },
+                    "social_graph_urls": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": ["https://twitter.com/example"]
+                    },
+                    "technologies": {
+                      "type": "object",
+                      "example": {
+                        "other": {
+                          "widgets": ["AddThis", "Twitter"]
+                        },
+                        "web_development": {
+                          "javascript_libraries": ["Axios", "jQuery"]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Search for Companies",
+        "description": "Search for companies based on a any query string. You can use the endpoint to find company names from any text.",
+        "operationId": "searchCompanies",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The search term to find companies",
+            "example": "google"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Company"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/logo/{domain}": {
+      "get": {
+        "summary": "Get Company Logo",
+        "description": "Retrieve a company's logo by domain.",
+        "operationId": "getCompanyLogo",
+        "parameters": [
+          {
+            "name": "domain",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The company's domain name",
+            "example": "google.com"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Logo image",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Logo not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/moz-link-metrics": {
+      "post": {
+        "summary": "MOZ Backlink Summary",
+        "description": "Retrieve MOZ metrics from any domains.",
+        "operationId": "getMozMetrics",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domains": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "example": ["example.com", "another.com"]
+                  }
+                },
+                "required": ["domains"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/MozMetrics"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/youtube-video-info": {
+      "post": {
+        "summary": "YouTube Video Info",
+        "description": "Retrieves detailed information about a specific YouTube video",
+        "operationId": "getYouTubeVideoInfo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["video_id"],
+                "properties": {
+                  "video_id": {
+                    "type": "string",
+                    "description": "YouTube video ID",
+                    "example": "vQXvyV0zIP4"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code",
+                    "default": "en",
+                    "example": "en"
+                  },
+                  "location_code": {
+                    "type": "integer",
+                    "description": "Location code (2840 for US)",
+                    "default": 2840,
+                    "example": 2840
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "api": {
+                              "type": "string",
+                              "example": "serp"
+                            },
+                            "function": {
+                              "type": "string",
+                              "example": "live"
+                            },
+                            "se": {
+                              "type": "string",
+                              "example": "youtube"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "example": "video_info"
+                            },
+                            "language_code": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "location_code": {
+                              "type": "integer",
+                              "example": 2840
+                            },
+                            "video_id": {
+                              "type": "string",
+                              "example": "vQXvyV0zIP4"
+                            },
+                            "check_url": {
+                              "type": "string",
+                              "example": "https://www.youtube.com/watch?v=vQXvyV0zIP4"
+                            }
+                          }
+                        },
+                        "result": {
+                          "$ref": "#/components/schemas/YouTubeVideoInfo"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/google-serp": {
+      "post": {
+        "summary": "Google SERP",
+        "description": "Retrieves search engine results from Google.",
+        "operationId": "getGoogleSerp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["keyword"],
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search term",
+                    "example": "marketing"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code",
+                    "default": "en",
+                    "example": "en"
+                  },
+                  "location_code": {
+                    "type": "integer",
+                    "description": "Location code (2840 for US)",
+                    "default": 2840,
+                    "example": 2840
+                  },
+                  "device": {
+                    "type": "string",
+                    "description": "Device type",
+                    "default": "desktop",
+                    "enum": ["desktop", "mobile"],
+                    "example": "desktop"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "api": {
+                              "type": "string",
+                              "example": "serp"
+                            },
+                            "function": {
+                              "type": "string",
+                              "example": "live"
+                            },
+                            "se": {
+                              "type": "string",
+                              "example": "google"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "example": "organic"
+                            },
+                            "language_name": {
+                              "type": "string",
+                              "example": "English"
+                            },
+                            "location_name": {
+                              "type": "string",
+                              "example": "United States"
+                            },
+                            "keyword": {
+                              "type": "string",
+                              "example": "marketing"
+                            },
+                            "device": {
+                              "type": "string",
+                              "example": "desktop"
+                            },
+                            "os": {
+                              "type": "string",
+                              "example": "windows"
+                            },
+                            "se_domain": {
+                              "type": "string",
+                              "example": "google.co.uk"
+                            }
+                          }
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GoogleSerpResult"
+                          },
+                          "example": [
+                            {
+                              "type": "featured_snippet",
+                              "rank_group": 1,
+                              "rank_absolute": 2,
+                              "domain": "www.ama.org",
+                              "title": "What is Marketing? — The Definition of Marketing — AMA",
+                              "description": "Marketing is the activity, set of institutions, and processes for creating, communicating, delivering, and exchanging offerings that have value for customers, clients, partners, and society at large.",
+                              "url": "https://www.ama.org/the-definition-of-marketing-what-is-marketing/"
+                            },
+                            {
+                              "type": "organic",
+                              "rank_group": 1,
+                              "rank_absolute": 4,
+                              "domain": "www.investopedia.com",
+                              "title": "Marketing in Business: Strategies and Types Explained",
+                              "description": "Marketing refers to the activities of a company associated with buying, advertising, distributing, or selling a product or service.",
+                              "url": "https://www.investopedia.com/terms/m/marketing.asp",
+                              "breadcrumb": "https://www.investopedia.com › ... › Marketing Essentials"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bing-serp": {
+      "post": {
+        "summary": "Bing SERP",
+        "description": "Retrieves search engine results from Bing.com",
+        "operationId": "getBingSerp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["keyword"],
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search term",
+                    "example": "cloudflare workers"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code",
+                    "default": "en",
+                    "example": "en"
+                  },
+                  "location_code": {
+                    "type": "integer",
+                    "description": "Location code (2840 for US)",
+                    "default": 2840,
+                    "example": 2840
+                  },
+                  "device": {
+                    "type": "string",
+                    "description": "Device type",
+                    "default": "desktop",
+                    "enum": ["desktop", "mobile"],
+                    "example": "desktop"
+                  },
+                  "depth": {
+                    "type": "integer",
+                    "description": "Number of results to return",
+                    "default": 100,
+                    "maximum": 700,
+                    "example": 100
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "api": {
+                              "type": "string",
+                              "example": "serp"
+                            },
+                            "function": {
+                              "type": "string",
+                              "example": "live"
+                            },
+                            "se": {
+                              "type": "string",
+                              "example": "bing"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "example": "organic"
+                            },
+                            "keyword": {
+                              "type": "string",
+                              "example": "marketing"
+                            },
+                            "language_code": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "location_code": {
+                              "type": "integer",
+                              "example": 2840
+                            },
+                            "device": {
+                              "type": "string",
+                              "example": "desktop"
+                            },
+                            "os": {
+                              "type": "string",
+                              "example": "windows"
+                            },
+                            "depth": {
+                              "type": "integer",
+                              "example": 3
+                            }
+                          }
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/BingSerpResult"
+                          },
+                          "example": [
+                            {
+                              "type": "organic",
+                              "rank_group": 1,
+                              "rank_absolute": 1,
+                              "domain": "en.wikipedia.org",
+                              "title": "Marketing - Wikipedia",
+                              "url": "https://en.wikipedia.org/wiki/Marketing",
+                              "breadcrumb": "https://en.wikipedia.org › wiki › Marketing"
+                            },
+                            {
+                              "type": "organic",
+                              "rank_group": 2,
+                              "rank_absolute": 2,
+                              "domain": "www.investopedia.com",
+                              "title": "Marketing in Business: Strategies and Types …",
+                              "url": "https://www.investopedia.com/terms/m/marketing.asp",
+                              "breadcrumb": "https://www.investopedia.com › terms › m…"
+                            },
+                            {
+                              "type": "paid",
+                              "rank_group": 1,
+                              "rank_absolute": 3,
+                              "domain": "www.chainstoreguide.com",
+                              "title": "Off-the-Chain Marketing | Direct Marketing Leads",
+                              "description": "Sponsored Leading provider of accurate & Verified leads for retail & restaurant Businesses. Industry leading provider of accurate & Verified leads. Start selling now!",
+                              "url": "https://www.chainstoreguide.com/offthechain/csg-retail-restaurant-sales-leads/",
+                              "breadcrumb": "https://www.chainstoreguide.com › Sales_Leads › Free_Trial"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/youtube-serp": {
+      "post": {
+        "summary": "YouTube SERP",
+        "description": "Retrieves organic search results from YouTube",
+        "operationId": "getYouTubeSerp",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["keyword"],
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search term",
+                    "example": "audi"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code",
+                    "default": "en",
+                    "example": "en"
+                  },
+                  "location_code": {
+                    "type": "integer",
+                    "description": "Location code (2840 for US)",
+                    "default": 2840,
+                    "example": 2840
+                  },
+                  "device": {
+                    "type": "string",
+                    "description": "Device type",
+                    "default": "desktop",
+                    "enum": ["desktop", "mobile"],
+                    "example": "desktop"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "api": {
+                              "type": "string",
+                              "example": "serp"
+                            },
+                            "function": {
+                              "type": "string",
+                              "example": "live"
+                            },
+                            "se": {
+                              "type": "string",
+                              "example": "youtube"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "example": "organic"
+                            },
+                            "keyword": {
+                              "type": "string",
+                              "example": "audi"
+                            },
+                            "language_code": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "location_code": {
+                              "type": "integer",
+                              "example": 2840
+                            },
+                            "device": {
+                              "type": "string",
+                              "example": "desktop"
+                            }
+                          }
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/YouTubeSerpResult"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/google-autocomplete": {
+      "post": {
+        "summary": "Google Autocomplete",
+        "description": "Retrieves search suggestion keywords from Google's autocomplete service",
+        "operationId": "getGoogleAutocomplete",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["keyword"],
+                "properties": {
+                  "keyword": {
+                    "type": "string",
+                    "description": "Search term",
+                    "example": "albert einstein"
+                  },
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code",
+                    "default": "en",
+                    "example": "en"
+                  },
+                  "location_code": {
+                    "type": "integer",
+                    "description": "Location code (2840 for US)",
+                    "default": 2840,
+                    "example": 2840
+                  },
+                  "client": {
+                    "type": "string",
+                    "description": "Client type",
+                    "default": "gws-wiz-serp",
+                    "example": "gws-wiz-serp"
+                  },
+                  "device": {
+                    "type": "string",
+                    "description": "Device type",
+                    "default": "desktop",
+                    "enum": ["desktop", "mobile"],
+                    "example": "desktop"
+                  },
+                  "os": {
+                    "type": "string",
+                    "description": "Operating system",
+                    "default": "windows",
+                    "enum": ["windows", "macos", "android", "ios"],
+                    "example": "windows"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "api": {
+                              "type": "string",
+                              "example": "serp"
+                            },
+                            "function": {
+                              "type": "string",
+                              "example": "live"
+                            },
+                            "se": {
+                              "type": "string",
+                              "example": "google"
+                            },
+                            "se_type": {
+                              "type": "string",
+                              "example": "autocomplete"
+                            },
+                            "keyword": {
+                              "type": "string",
+                              "example": "albert einstein"
+                            },
+                            "language_code": {
+                              "type": "string",
+                              "example": "en"
+                            },
+                            "location_code": {
+                              "type": "integer",
+                              "example": 2840
+                            },
+                            "client": {
+                              "type": "string",
+                              "example": "gws-wiz-serp"
+                            },
+                            "device": {
+                              "type": "string",
+                              "example": "desktop"
+                            },
+                            "os": {
+                              "type": "string",
+                              "example": "windows"
+                            }
+                          }
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GoogleAutocompleteResult"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/html-source-code-search": {
+      "post": {
+        "summary": "Search HTML Source Code",
+        "description": "Search through website source code to find specific HTML elements, attributes, or technologies",
+        "operationId": "searchHtmlSourceCode",
+        "tags": ["HTML Source Code"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HTMLSourceCodeSearchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTMLSourceCodeSearchResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 
