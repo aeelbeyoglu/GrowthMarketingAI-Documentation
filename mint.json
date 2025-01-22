@@ -28,14 +28,7 @@
     "name": "GrowthMarketing.AI",
     "url": "https://growthmarketing.ai"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference",
-      "openapi": "/api-reference/openapi.json"
-    }
-  ],
-  "openapi": "/api-reference/openapi.json",
+
   "navigation": [
     {
       "group": "API Reference",
