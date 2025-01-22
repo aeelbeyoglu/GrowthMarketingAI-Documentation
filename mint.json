@@ -28,24 +28,34 @@
     "name": "GrowthMarketing.AI",
     "url": "https://growthmarketing.ai"
   },
+  "tabs": [
+    {
+      "name": "API Reference",
+      "url": "api-reference",
+      "openapi": "/api-reference/openapi.json"
+    }
+  ],
+  "openapi": "/api-reference/openapi.json",
   "navigation": [
     {
       "group": "Getting Started",
       "pages": [
-        "api/introduction"
+        "api-reference/introduction"
       ]
     },
     {
       "group": "API Reference",
       "pages": [
-        "api/search-for-companies",
-        "api/get-company-logo",
-        "api/get-moz-metrics",
-        "api/get-youtube-video-information",
-        "api/get-google-serp-results",
-        "api/get-bing-serp-results",
-        "api/get-youtube-serp-results",
-        "api/get-google-autocomplete-suggestions"      ]
+        "api-reference/search-for-companies",
+        "api-reference/get-company-logo",
+        "api-reference/get-moz-metrics",
+        "api-reference/get-youtube-video-information",
+        "api-reference/get-google-serp-results",
+        "api-reference/get-bing-serp-results",
+        "api-reference/get-youtube-serp-results",
+        "api-reference/get-google-autocomplete-suggestions",
+        "api-reference/html-source-code-search"
+      ]
     }
   ],
   "footerSocials": {
