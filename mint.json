@@ -38,14 +38,9 @@
   "openapi": "/api-reference/openapi.json",
   "navigation": [
     {
-      "group": "Getting Started",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
       "group": "API Reference",
       "pages": [
+        "api-reference/introduction",
         "api-reference/search-for-companies",
         "api-reference/get-company-logo",
         "api-reference/get-moz-metrics",
